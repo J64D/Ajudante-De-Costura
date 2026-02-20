@@ -1,0 +1,49 @@
+// CAMINHO: ajudantedecostura/opencv/build.gradle.kts
+
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace = "org.opencv"
+    compileSdk = 35
+    ndkVersion = "27.0.12077973"
+
+    defaultConfig {
+        minSdk = 26
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ["java/src"]
+            res.srcDirs = ["java/res"]
+            jniLibs.srcDirs = ["native/libs"]
+            manifest.srcFile "java/AndroidManifest.xml"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // Alinha a versão da JVM para 17
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
+}
+
+dependencies {
+    implementation(libs.androidx.core.ktx)
+}
