@@ -16,8 +16,8 @@ android {
         applicationId = "com.scarletstudio.ajudantedecostura"
         minSdk = 26
         targetSdk = 35
-        versionCode = 60
-        versionName = "60.0"
+        versionCode = 61
+        versionName = "61.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -97,8 +97,8 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // ✅ CORREÇÃO 5: AdMob / Google Ads (Correção do erro 'MobileAds')
-    implementation("com.google.android.gms:play-services-ads:23.0.0")
+    // ✅ CORREÇÃO 5: AdMob / Google Ads — versão gerenciada pelo TOML (23.6.0)
+    implementation(libs.play.services.ads)
 
     // OpenCV Local
     implementation(project(":opencv"))

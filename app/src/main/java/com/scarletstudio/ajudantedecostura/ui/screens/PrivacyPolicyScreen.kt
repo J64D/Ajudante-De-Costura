@@ -128,32 +128,95 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
 
         PrivacyCard(
             emoji = "📁",
-            title = "1. Coleta de Dados",
-            text = "Este aplicativo NÃO coleta, armazena ou compartilha informações pessoais."
+            title = "1. Dados Coletados pelo Aplicativo",
+            text = "O aplicativo em si NÃO coleta, armazena ou transmite dados pessoais seus. " +
+                    "Todas as informações de costura (medidas, tecidos, projetos) ficam " +
+                    "salvas apenas localmente no seu dispositivo e nunca são enviadas a servidores externos."
         )
 
-        Spacer(modifier = Modifier.height(12.dp)) // AJUSTE
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PrivacyCard(
+            emoji = "📊",
+            title = "2. Dados Coletados pelo Google AdMob",
+            text = "Para exibir anúncios relevantes, o Google AdMob pode coletar automaticamente:\n\n" +
+                    "• Identificadores de dispositivo (ID de publicidade Android / GAID)\n" +
+                    "• Localização aproximada (baseada em IP)\n" +
+                    "• Informações de diagnóstico e logs de falhas do app\n" +
+                    "• Dados de interação com anúncios (cliques, visualizações)\n" +
+                    "• Informações do dispositivo (modelo, versão do sistema operacional)\n\n" +
+                    "Esses dados são tratados pelo Google conforme a Política de Privacidade do Google " +
+                    "(policies.google.com/privacy)."
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PrivacyCard(
+            emoji = "🎯",
+            title = "3. Finalidade do Uso dos Dados",
+            text = "Os dados coletados pelo AdMob são utilizados exclusivamente para:\n\n" +
+                    "• Exibir anúncios personalizados ou não personalizados\n" +
+                    "• Medir o desempenho dos anúncios\n" +
+                    "• Prevenir fraudes e melhorar a segurança\n" +
+                    "• Gerar relatórios estatísticos agregados\n\n" +
+                    "O aplicativo NÃO usa esses dados para qualquer outra finalidade."
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         PrivacyCard(
             emoji = "💾",
-            title = "2. Armazenamento Local",
-            text = "Todos os dados permanecem exclusivamente no seu dispositivo."
+            title = "4. Armazenamento e Retenção",
+            text = "Dados do app: armazenados apenas localmente no seu dispositivo, sem prazo de expiração, " +
+                    "removidos ao desinstalar o aplicativo.\n\n" +
+                    "Dados do AdMob: retidos pelo Google conforme as políticas deles " +
+                    "(geralmente até 18 meses). Consulte o Google para gerenciar seus dados."
         )
 
-        Spacer(modifier = Modifier.height(12.dp)) // AJUSTE
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PrivacyCard(
+            emoji = "🔒",
+            title = "5. Segurança dos Dados",
+            text = "Todas as informações geradas no aplicativo ficam protegidas pelo sistema " +
+                    "de segurança do seu próprio dispositivo Android. " +
+                    "Não realizamos transmissão de dados pessoais por nossa parte. " +
+                    "As transmissões feitas pelo AdMob utilizam criptografia TLS/HTTPS."
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PrivacyCard(
+            emoji = "👤",
+            title = "6. Seus Direitos (LGPD)",
+            text = "Conforme a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), você tem direito a:\n\n" +
+                    "• Saber quais dados são coletados sobre você\n" +
+                    "• Solicitar a exclusão dos seus dados\n" +
+                    "• Revogar o consentimento a qualquer momento\n" +
+                    "• Optar por anúncios não personalizados (nas configurações do Google no seu dispositivo)\n\n" +
+                    "Para exercer esses direitos referentes ao AdMob, acesse: " +
+                    "myaccount.google.com/data-and-privacy"
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         PrivacyCard(
             emoji = "🌐",
-            title = "3. Publicidade (AdMob)",
-            text = "O aplicativo exibe anúncios do Google AdMob, sujeitos à política do Google."
+            title = "7. Publicidade (Google AdMob)",
+            text = "Este aplicativo é parceiro do Google AdMob (Google LLC, 1600 Amphitheatre Pkwy, " +
+                    "Mountain View, CA 94043, EUA). O AdMob segue o " +
+                    "Programa de Conformidade da IAB e cumpre as regulamentações GDPR e CCPA. " +
+                    "Mais informações: admob.google.com"
         )
 
-        Spacer(modifier = Modifier.height(12.dp)) // AJUSTE
+        Spacer(modifier = Modifier.height(12.dp))
 
         PrivacyCard(
             emoji = "📧",
-            title = "4. Contato",
-            text = "scarletstudiobrasil@gmail.com"
+            title = "8. Contato",
+            text = "Dúvidas sobre esta política de privacidade?\n\n" +
+                    "E-mail: scarletstudiobrasil@gmail.com\n\n" +
+                    "Respondemos em até 5 dias úteis."
         )
 
         Spacer(modifier = Modifier.height(28.dp)) // AJUSTE
