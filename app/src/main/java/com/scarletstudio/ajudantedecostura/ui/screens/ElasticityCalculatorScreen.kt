@@ -36,6 +36,7 @@ fun ElasticityCalculatorScreen(navController: NavHostController) {
     } else 0
 
     Scaffold(
+            bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
         topBar = {
             TopAppBar(
                 title = { Text("Elasticidade do Tecido", fontWeight = FontWeight.Bold) },

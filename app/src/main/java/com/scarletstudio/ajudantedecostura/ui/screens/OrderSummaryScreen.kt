@@ -78,7 +78,8 @@ fun OrderSummaryScreen(navController: NavHostController) {
                     }
                 }
             }
-        }
+        },
+        bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) }
 
     ) { innerPadding ->
 

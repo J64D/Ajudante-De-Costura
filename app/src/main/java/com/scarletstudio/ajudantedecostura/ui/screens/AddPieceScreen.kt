@@ -37,6 +37,7 @@ fun AddPieceScreen(navController: NavHostController) {
     var quantidade by remember { mutableStateOf("") }
 
     Scaffold(
+        bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
         topBar = {
             CenterAlignedTopAppBar(
                 title = {

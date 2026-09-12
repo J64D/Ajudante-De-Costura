@@ -160,6 +160,9 @@ fun WelcomeScreen(navController: NavHostController) {
             ) {
                 Text("Iniciar", color = Color.White, fontSize = 16.sp)
             }
+
+            Spacer(Modifier.height(16.dp))
+            AdMobBanner()
         }
     }
 }

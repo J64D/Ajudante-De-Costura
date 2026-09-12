@@ -7,8 +7,9 @@ plugins {
 
 android {
     namespace = "org.opencv"
-    compileSdk = 35
-    ndkVersion = "27.0.12077973"
+    compileSdk = 36
+    buildToolsVersion = "36.0.0"
+    ndkVersion = "27.2.12479018"
 
     defaultConfig {
         minSdk = 26

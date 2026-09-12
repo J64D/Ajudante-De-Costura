@@ -44,6 +44,7 @@ fun PriceCalculatorScreen(navController: NavHostController) {
     }
 
     Scaffold(
+            bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
         topBar = {
             TopAppBar(
                 title = { Text("Assistente de Preço") },

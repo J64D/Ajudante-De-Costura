@@ -268,25 +268,6 @@ fun HomeScreen(navController: NavHostController) {
                 )
             }
 
-            // ================= BOTÃO CENTRAL =================
-
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 18.dp)
-                    .size(60.dp)
-                    .shadow(10.dp, CircleShape)
-                    .background(Color(0xFFFF4F9A), CircleShape)
-                    .clickable { navController.navigate(Routes.MEASURE) },
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_empty_clothes),
-                    contentDescription = "Medir",
-                    modifier = Modifier.size(28.dp),
-                    contentScale = ContentScale.Fit
-                )
-            }
         }
     }
 }

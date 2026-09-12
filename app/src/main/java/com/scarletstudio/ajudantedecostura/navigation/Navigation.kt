@@ -15,9 +15,9 @@ object Routes {
     const val SETTINGS = "settings"
     const val PRIVACY = "privacy"
     const val ORDER_SUMMARY = "order_summary"
-
-    // 📏 MEDIÇÃO
-    const val MEASURE = "measure"
+    const val PRODUCTION = "production"
+    const val FABRICS = "fabrics"
+    const val LEARN = "learn"
 
     // 🛠️ FERRAMENTAS PRO
     const val ELASTICITY = "elasticity"
@@ -40,6 +40,10 @@ fun Navigation(navController: NavHostController) {
         }
 
         composable(Routes.HOME) {
+            AtelierDashboardScreen(navController)
+        }
+
+        composable(Routes.PRODUCTION) {
             HomeScreen(navController)
         }
 
@@ -55,11 +59,6 @@ fun Navigation(navController: NavHostController) {
             PrivacyPolicyScreen(navController)
         }
 
-        // 📏 TELA DE MEDIÇÃO CORRETA
-        composable(Routes.MEASURE) {
-            MeasureScreen(navController)
-        }
-
         // 📦 RESUMO DO DIA
         composable(Routes.ORDER_SUMMARY) {
             OrderSummaryScreen(navController)
@@ -67,11 +66,19 @@ fun Navigation(navController: NavHostController) {
 
         // 🛠️ FERRAMENTAS PRO
         composable(Routes.ELASTICITY) {
-            ElasticityCalculatorScreen(navController)
+            ElasticityTestScreen(navController)
         }
 
         composable(Routes.PRICING) {
             PriceCalculatorScreen(navController)
+        }
+
+        composable(Routes.FABRICS) {
+            FabricGuideScreen(navController)
+        }
+
+        composable(Routes.LEARN) {
+            LearnScreen(navController)
         }
     }
 }

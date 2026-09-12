@@ -38,6 +38,7 @@ fun MeasureScreen(navController: NavHostController) {
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
 
     Scaffold(
+            bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
         topBar = {
             TopAppBar(
                 title = { Text("Medição de Tecido", fontWeight = FontWeight.Bold, fontSize = 20.sp) },
