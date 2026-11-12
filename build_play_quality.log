@@ -1,0 +1,252 @@
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0
+Info: Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\cmake\3.22.1
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\cmdline-tools\16.0
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
+Info: Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34
+Info: Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Info: Parsing legacy package: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36
+Info: Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :opencv:preBuild UP-TO-DATE
+> Task :opencv:preDebugBuild UP-TO-DATE
+> Task :opencv:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :opencv:generateDebugResValues UP-TO-DATE
+> Task :opencv:generateDebugResources UP-TO-DATE
+> Task :opencv:packageDebugResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :opencv:extractDeepLinksDebug UP-TO-DATE
+> Task :opencv:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :opencv:compileDebugLibraryResources UP-TO-DATE
+> Task :opencv:parseDebugLocalResources UP-TO-DATE
+> Task :opencv:generateDebugRFile UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :opencv:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :opencv:generateDebugBuildConfig UP-TO-DATE
+> Task :opencv:compileDebugKotlin UP-TO-DATE
+> Task :opencv:javaPreCompileDebug UP-TO-DATE
+
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+> Task :opencv:compileDebugJavaWithJavac
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :opencv:processDebugJavaRes
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :opencv:mergeDebugShaders UP-TO-DATE
+> Task :opencv:compileDebugShaders NO-SOURCE
+> Task :opencv:generateDebugAssets UP-TO-DATE
+> Task :opencv:mergeDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :opencv:bundleLibRuntimeToJarDebug
+> Task :opencv:bundleLibCompileToJarDebug
+> Task :app:checkDebugDuplicateClasses
+> Task :app:kspDebugKotlin
+> Task :app:mergeExtDexDebug
+> Task :app:mergeDebugJniLibFolders
+> Task :opencv:mergeDebugJniLibFolders
+> Task :opencv:bundleLibRuntimeToDirDebug
+> Task :opencv:mergeDebugNativeLibs
+> Task :opencv:copyDebugJniLibsProjectOnly
+> Task :app:validateSigningDebug
+> Task :app:mergeLibDexDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:mergeDebugNativeLibs
+> Task :app:compileDebugKotlin
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preReleaseBuild UP-TO-DATE
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libimage_processing_util_jni.so, libopencv_java4.so, libsurface_util_jni.so. Run with --info option to learn more.
+
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :opencv:preReleaseBuild UP-TO-DATE
+> Task :opencv:mergeReleaseShaders
+> Task :opencv:compileReleaseShaders NO-SOURCE
+> Task :opencv:generateReleaseAssets UP-TO-DATE
+> Task :opencv:mergeReleaseAssets
+> Task :app:mergeReleaseAssets
+> Task :opencv:generateReleaseBuildConfig
+> Task :opencv:generateReleaseResValues
+> Task :opencv:generateReleaseResources
+> Task :opencv:packageReleaseResources
+> Task :opencv:javaPreCompileRelease
+> Task :opencv:parseReleaseLocalResources
+> Task :app:buildKotlinToolingMetadata
+> Task :opencv:generateReleaseRFile
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:generateReleaseBuildConfig
+> Task :opencv:writeReleaseAarMetadata
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+
+> Task :opencv:compileReleaseKotlin
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:6:39 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:6:73 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:6:78 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:7:38 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:7:71 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:7:76 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:8:39 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:8:73 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:8:78 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:9:38 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:9:71 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:9:76 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:11:39 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:11:74 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:11:79 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:12:38 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:12:72 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:12:77 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:13:39 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:13:74 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:13:79 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:14:38 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:14:72 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+w: file:///D:/GitHub/Ajudante-De-Costura/opencv/java/src/org/opencv/core/MatAt.kt:14:77 This declaration needs opt-in. Its usage should be marked with '@kotlin.ExperimentalUnsignedTypes' or '@OptIn(kotlin.ExperimentalUnsignedTypes::class)'
+
+> Task :app:mergeReleaseResources
+
+> Task :app:compileDebugKotlin
+w: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/MeasureScreen.kt:109:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:kspDebugUnitTestKotlin
+> Task :app:mergeProjectDexDebug
+> Task :app:compileDebugUnitTestKotlin
+
+> Task :opencv:compileReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :app:mergeDebugJavaResource
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:testDebugUnitTest
+> Task :opencv:mergeReleaseGeneratedProguardFiles
+> Task :opencv:exportReleaseConsumerProguardFiles
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:parseReleaseLocalResources
+> Task :app:extractDeepLinksRelease
+> Task :opencv:extractDeepLinksRelease
+> Task :opencv:processReleaseManifest
+> Task :opencv:bundleLibCompileToJarRelease
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:javaPreCompileRelease
+> Task :opencv:prepareReleaseArtProfile
+> Task :app:processReleaseManifestForPackage
+> Task :app:mergeReleaseArtProfile
+> Task :opencv:bundleLibRuntimeToJarRelease
+> Task :app:extractProguardFiles
+> Task :opencv:processReleaseJavaRes
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:processReleaseResources
+> Task :opencv:mergeReleaseJniLibFolders
+> Task :app:packageDebug
+> Task :opencv:mergeReleaseNativeLibs
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:writeReleaseAppMetadata
+> Task :opencv:copyReleaseJniLibsProjectOnly
+> Task :app:kspReleaseKotlin
+> Task :app:collectReleaseDependencies
+> Task :app:configureReleaseDependencies
+> Task :opencv:createFullJarRelease
+> Task :opencv:extractProguardFiles
+> Task :app:mergeReleaseNativeLibs
+> Task :opencv:generateReleaseLintModel
+> Task :opencv:prepareLintJarForPublish
+> Task :opencv:extractDeepLinksForAarRelease
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libimage_processing_util_jni.so, libopencv_java4.so, libsurface_util_jni.so. Run with --info option to learn more.
+
+> Task :opencv:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libopencv_java4.so. Run with --info option to learn more.
+
+> Task :app:compileReleaseKotlin
+> Task :opencv:extractReleaseAnnotations
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:extractReleaseNativeDebugMetadata
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:generateReleaseLintVitalReportModel
+> Task :opencv:mergeReleaseConsumerProguardFiles
+> Task :opencv:mergeReleaseJavaResource
+> Task :opencv:copyReleaseJniLibsProjectAndLocalJars
+> Task :opencv:syncReleaseLibJars
+> Task :opencv:bundleReleaseLocalLintAar
+> Task :opencv:writeReleaseLintModelMetadata
+> Task :opencv:generateReleaseLintVitalModel
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:mergeReleaseJavaResource
+> Task :opencv:lintVitalAnalyzeRelease
+> Task :app:minifyReleaseWithR8
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:buildReleasePreBundle
+> Task :app:compileReleaseArtProfile
+> Task :app:packageReleaseBundle
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+
+[Incubating] Problems report is available at: file:///D:/GitHub/Ajudante-De-Costura/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 13m 2s
+154 actionable tasks: 121 executed, 33 up-to-date

@@ -7,6 +7,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.PrivacyTip
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,20 +27,7 @@ import com.google.android.gms.ads.AdView
 // ▶ BANNER ADMOB
 // -----------------------------------------------------------------------------
 @Composable
-fun AdMobBannerPrivacy() {
-    AndroidView(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp), // 🔒 NÃO ALTERADO
-        factory = { context ->
-            AdView(context).apply {
-                setAdSize(AdSize.BANNER)
-                adUnitId = "ca-app-pub-1367515717522293/6625687240"
-                loadAd(AdRequest.Builder().build())
-            }
-        }
-    )
-}
+fun AdMobBannerPrivacy() { AdMobBanner() }
 
 @Composable
 fun PrivacyPolicyScreen(navController: NavHostController) {
@@ -46,7 +35,7 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFDFDFD))
+            .background(com.scarletstudio.ajudantedecostura.ui.theme.Blush)
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())
@@ -57,13 +46,13 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
         // TOP BAR
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = { navController.popBackStack() }) {
-                Text("←", fontSize = 22.sp, color = Color(0xFFFF4F9A)) // AJUSTE
+                Text("←", fontSize = 22.sp, color = com.scarletstudio.ajudantedecostura.ui.theme.Rose) // AJUSTE
             }
             Text(
                 "Política de Privacidade",
                 fontSize = 18.sp, // AJUSTE
                 fontWeight = FontWeight.SemiBold,
-                color = Color(0xFF333333),
+                color = com.scarletstudio.ajudantedecostura.ui.theme.RoseInk,
                 modifier = Modifier.padding(start = 4.dp) // AJUSTE
             )
         }
@@ -84,7 +73,7 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
                 .align(Alignment.CenterHorizontally),
             contentAlignment = Alignment.Center
         ) {
-            Text("🛡️", fontSize = 36.sp) // AJUSTE
+            Icon(Icons.Rounded.PrivacyTip, null, tint = com.scarletstudio.ajudantedecostura.ui.theme.Rose, modifier = Modifier.size(36.dp)) // AJUSTE
         }
 
         Spacer(modifier = Modifier.height(12.dp)) // AJUSTE
@@ -95,7 +84,7 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
             modifier = Modifier.align(Alignment.CenterHorizontally),
             fontSize = 18.sp, // AJUSTE
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF333333)
+            color = com.scarletstudio.ajudantedecostura.ui.theme.RoseInk
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -104,7 +93,7 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
             "Aqui explicamos claramente como seus dados são protegidos durante o uso do aplicativo.",
             modifier = Modifier.align(Alignment.CenterHorizontally),
             fontSize = 13.sp, // AJUSTE
-            color = Color.Gray,
+            color = com.scarletstudio.ajudantedecostura.ui.theme.RoseMuted,
             lineHeight = 18.sp // AJUSTE
         )
 
@@ -117,10 +106,10 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text(
-                text = "ÚLTIMA ATUALIZAÇÃO: 11/12/2025",
+                text = "ÚLTIMA ATUALIZAÇÃO: 26/09/2026",
                 fontSize = 10.sp, // AJUSTE
                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 4.dp), // AJUSTE
-                color = Color(0xFF444444)
+                color = com.scarletstudio.ajudantedecostura.ui.theme.RoseMuted
             )
         }
 
@@ -129,9 +118,11 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
         PrivacyCard(
             emoji = "📁",
             title = "1. Dados Coletados pelo Aplicativo",
-            text = "O aplicativo em si NÃO coleta, armazena ou transmite dados pessoais seus. " +
-                    "Todas as informações de costura (medidas, tecidos, projetos) ficam " +
-                    "salvas apenas localmente no seu dispositivo e nunca são enviadas a servidores externos."
+            text = "As informações das suas peças ficam salvas localmente no dispositivo. " +
+                    "Quando a área de cursos está configurada, o catálogo é consultado no Firebase. " +
+                    "O acesso de administrador usa e-mail e senha pelo Firebase Authentication. " +
+                    "Títulos, descrições e links das aulas são armazenados no Cloud Firestore. " +
+                    "Os alunos não precisam de conta para consultar aulas publicadas."
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -167,8 +158,8 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
         PrivacyCard(
             emoji = "💾",
             title = "4. Armazenamento e Retenção",
-            text = "Dados do app: armazenados apenas localmente no seu dispositivo, sem prazo de expiração, " +
-                    "removidos ao desinstalar o aplicativo.\n\n" +
+            text = "Dados das peças: armazenados localmente no dispositivo. " +
+                    "Contas de administrador e conteúdo dos cursos permanecem no Firebase até serem excluídos pelo responsável pelo projeto.\n\n" +
                     "Dados do AdMob: retidos pelo Google conforme as políticas deles " +
                     "(geralmente até 18 meses). Consulte o Google para gerenciar seus dados."
         )
@@ -178,10 +169,9 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
         PrivacyCard(
             emoji = "🔒",
             title = "5. Segurança dos Dados",
-            text = "Todas as informações geradas no aplicativo ficam protegidas pelo sistema " +
-                    "de segurança do seu próprio dispositivo Android. " +
-                    "Não realizamos transmissão de dados pessoais por nossa parte. " +
-                    "As transmissões feitas pelo AdMob utilizam criptografia TLS/HTTPS."
+            text = "Os dados locais usam a proteção do Android. " +
+                    "As conexões com Firebase e YouTube usam HTTPS. " +
+                    "A publicação e a leitura de rascunhos dos cursos são restritas a contas autorizadas pelas regras do servidor."
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -213,7 +203,18 @@ fun PrivacyPolicyScreen(navController: NavHostController) {
 
         PrivacyCard(
             emoji = "📧",
-            title = "8. Contato",
+            title = "8. Vídeos do YouTube",
+            text = "Ao abrir uma aula, o player incorporado se conecta ao YouTube, que pode processar " +
+                    "dados de conexão, dispositivo e interação conforme suas próprias políticas. " +
+                    "Os vídeos permanecem hospedados no YouTube. Consulte policies.google.com/privacy " +
+                    "e youtube.com/t/terms."
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PrivacyCard(
+            emoji = "📧",
+            title = "9. Contato",
             text = "Dúvidas sobre esta política de privacidade?\n\n" +
                     "E-mail: scarletstudiobrasil@gmail.com\n\n" +
                     "Respondemos em até 5 dias úteis."
@@ -248,7 +249,7 @@ fun PrivacyCard(
                     .background(Color(0xFFFFF4F7)),
                 contentAlignment = Alignment.Center
             ) {
-                Text(emoji, fontSize = 22.sp) // AJUSTE
+                Icon(Icons.Rounded.PrivacyTip, null, tint = com.scarletstudio.ajudantedecostura.ui.theme.Rose) // AJUSTE
             }
 
             Spacer(modifier = Modifier.height(10.dp)) // AJUSTE
@@ -257,7 +258,7 @@ fun PrivacyCard(
 
             Spacer(modifier = Modifier.height(4.dp)) // AJUSTE
 
-            Text(text, fontSize = 13.sp, lineHeight = 18.sp) // AJUSTE
+            Text(text, style = MaterialTheme.typography.bodyMedium) // AJUSTE
         }
     }
 }

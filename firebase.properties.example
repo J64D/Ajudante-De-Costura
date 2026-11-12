@@ -1,0 +1,4 @@
+# Copy to firebase.properties and fill with the Android app config from Firebase.
+apiKey=
+projectId=
+applicationId=

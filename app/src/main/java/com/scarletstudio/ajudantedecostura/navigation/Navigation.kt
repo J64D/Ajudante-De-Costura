@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.scarletstudio.ajudantedecostura.ui.screens.*
 
 object Routes {
+    const val SPLASH = "splash"
     const val WELCOME = "welcome"
     const val HOME = "home"
     const val ADD_PIECE = "add_piece"
@@ -18,6 +19,9 @@ object Routes {
     const val PRODUCTION = "production"
     const val FABRICS = "fabrics"
     const val LEARN = "learn"
+    const val COURSES = "courses"
+    const val RULER = "ruler"
+    const val PATTERNS = "patterns"
 
     // 🛠️ FERRAMENTAS PRO
     const val ELASTICITY = "elasticity"
@@ -28,13 +32,21 @@ object Routes {
 fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Routes.WELCOME,
+        startDestination = Routes.SPLASH,
         enterTransition = { fadeIn(animationSpec = tween(400)) + slideInHorizontally(initialOffsetX = { it / 10 }) },
         exitTransition = { fadeOut(animationSpec = tween(400)) + slideOutHorizontally(targetOffsetX = { -it / 10 }) },
         popEnterTransition = { fadeIn(animationSpec = tween(400)) + slideInHorizontally(initialOffsetX = { -it / 10 }) },
         popExitTransition = { fadeOut(animationSpec = tween(400)) + slideOutHorizontally(targetOffsetX = { it / 10 }) }
     ) {
 
+        composable(Routes.SPLASH, enterTransition = { fadeIn(tween(120)) }, exitTransition = { fadeOut(tween(220)) }) {
+            BrandSplashScreen(onFinished = {
+                navController.navigate(Routes.WELCOME) {
+                    popUpTo(Routes.SPLASH) { inclusive = true }
+                    launchSingleTop = true
+                }
+            })
+        }
         composable(Routes.WELCOME) {
             WelcomeScreen(navController)
         }
@@ -49,6 +61,9 @@ fun Navigation(navController: NavHostController) {
 
         composable(Routes.ADD_PIECE) {
             AddPieceScreen(navController)
+        }
+        composable("edit_piece/{id}", arguments = listOf(androidx.navigation.navArgument("id") { type = androidx.navigation.NavType.IntType })) { entry ->
+            AddPieceScreen(navController, entry.arguments?.getInt("id"))
         }
 
         composable(Routes.SETTINGS) {
@@ -80,5 +95,10 @@ fun Navigation(navController: NavHostController) {
         composable(Routes.LEARN) {
             LearnScreen(navController)
         }
+        composable(Routes.COURSES) {
+            CourseFeature(onBack = { navController.popBackStack() })
+        }
+        composable(Routes.RULER) { RulerScreen(navController) }
+        composable(Routes.PATTERNS) { PatternsScreen(navController) }
     }
 }

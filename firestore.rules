@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function admin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/courseAdmins/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/courseAdmins/$(request.auth.uid)).data.enabled == true;
+    }
+    match /courseAdmins/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+    match /courseLessons/{lessonId} {
+      allow read: if resource.data.published == true || admin();
+      allow create, update: if admin() && validLesson();
+      allow delete: if admin();
+      function validLesson() {
+        let d = request.resource.data;
+        return d.keys().hasAll(['courseTitle', 'moduleTitle', 'title', 'description', 'videoUrl', 'moduleOrder', 'lessonOrder', 'published']) &&
+          d.keys().hasOnly(['courseTitle', 'moduleTitle', 'title', 'description', 'videoUrl', 'moduleOrder', 'lessonOrder', 'published']) &&
+          d.courseTitle is string && d.courseTitle.size() > 0 && d.courseTitle.size() <= 120 &&
+          d.moduleTitle is string && d.moduleTitle.size() > 0 && d.moduleTitle.size() <= 120 &&
+          d.title is string && d.title.size() > 0 && d.title.size() <= 160 &&
+          d.description is string && d.description.size() <= 3000 &&
+          d.videoUrl is string && d.videoUrl.matches('https://www[.]youtube[.]com/watch[?]v=[A-Za-z0-9_-]{11}') &&
+          d.moduleOrder is int && d.moduleOrder > 0 && d.moduleOrder <= 10000 &&
+          d.lessonOrder is int && d.lessonOrder > 0 && d.lessonOrder <= 10000 &&
+          d.published is bool;
+      }
+    }
+  }
+}

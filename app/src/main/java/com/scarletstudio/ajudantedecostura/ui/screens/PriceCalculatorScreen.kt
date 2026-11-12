@@ -1,212 +1,59 @@
 package com.scarletstudio.ajudantedecostura.ui.screens
 
-import androidx.compose.animation.*
-import androidx.compose.foundation.background
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.rounded.Calculate
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.scarletstudio.ajudantedecostura.data.SewingMath
+import com.scarletstudio.ajudantedecostura.ui.theme.*
+import java.text.NumberFormat
+import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PriceCalculatorScreen(navController: NavHostController) {
-    var step by remember { mutableIntStateOf(1) }
-    
-    // Estados do cálculo
-    var materialCost by remember { mutableStateOf("") }
-    var laborTime by remember { mutableStateOf("") }
-    var hourlyRate by remember { mutableStateOf("") }
-    var profitMargin by remember { mutableStateOf("30") } // 30% padrão
-
-    val totalPrice: Double by remember(materialCost, laborTime, hourlyRate, profitMargin) {
-        derivedStateOf {
-            val mat = materialCost.toDoubleOrNull() ?: 0.0
-            val time = laborTime.toDoubleOrNull() ?: 0.0
-            val rate = hourlyRate.toDoubleOrNull() ?: 0.0
-            val profit = (profitMargin.toDoubleOrNull() ?: 0.0) / 100.0
-            
-            val cost = mat + (time * rate)
-            cost * (1 + profit)
-        }
-    }
-
-    Scaffold(
-            bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
-        topBar = {
-            TopAppBar(
-                title = { Text("Assistente de Preço") },
-                navigationIcon = {
-                    IconButton(onClick = { 
-                        if (step > 1) step-- else navController.popBackStack() 
-                    }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
-            )
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Indicador de progresso simples
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                repeat(4) { idx ->
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(6.dp)
-                            .background(
-                                if (step > idx) Color(0xFFFF4F9A) else Color(0xFFFFE1E1),
-                                RoundedCornerShape(3.dp)
-                            )
-                    )
+    var material by rememberSaveable { mutableStateOf("") }
+    var hours by rememberSaveable { mutableStateOf("") }
+    var rate by rememberSaveable { mutableStateOf("") }
+    var markup by rememberSaveable { mutableStateOf("30") }
+    val price = SewingMath.price(material, hours, rate, markup)
+    val money = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")) }
+    Scaffold(topBar = { AtelierTopBar("Preço justo", { navController.popBackStack() }) }) { padding ->
+        Column(Modifier.fillMaxSize().padding(padding).imePadding().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            InlineAd()
+            BubbleIcon(Icons.Rounded.Calculate)
+            Text("Seu trabalho tem valor.", style = MaterialTheme.typography.headlineSmall)
+            Text("Considere os materiais, seu tempo e o acréscimo que deseja aplicar.", color = RoseMuted)
+            PriceInput("Materiais (R$)", material, { material = it }, "Tecidos, linhas, botões e outros custos.", 1000000.0)
+            PriceInput("Tempo de trabalho (horas)", hours, { hours = it }, "Ex.: 2,5 para duas horas e meia.", 100000.0)
+            PriceInput("Valor da sua hora (R$)", rate, { rate = it }, "Quanto você deseja receber por hora.", 1000000.0)
+            PriceInput("Acréscimo sobre o custo (%)", markup, { markup = it }, "30% de acréscimo não é uma margem de 30% sobre a venda.", 1000.0)
+            Card(Modifier.fillMaxWidth().animateContentSize(), colors = CardDefaults.cardColors(containerColor = Petal)) {
+                Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Preço sugerido", style = MaterialTheme.typography.titleMedium)
+                    Text(price?.let { money.format(it) } ?: "Preencha os valores", style = MaterialTheme.typography.headlineMedium)
+                    Text(if (price != null) "Materiais + (horas × valor da hora), com $markup% de acréscimo." else "Use números válidos em todos os campos.", color = RoseMuted)
                 }
             }
-
-            Spacer(modifier = Modifier.height(40.dp))
-
-            // Conteúdo Animado por Passo
-            AnimatedContent(
-                targetState = step,
-                transitionSpec = {
-                    if (targetState > initialState) {
-                        slideInHorizontally { it } + fadeIn() togetherWith slideOutHorizontally { -it } + fadeOut()
-                    } else {
-                        slideInHorizontally { -it } + fadeIn() togetherWith slideOutHorizontally { it } + fadeOut()
-                    }
-                },
-                label = "step-animation"
-            ) { targetStep ->
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
-                    when (targetStep) {
-                        1 -> StepContent(
-                            question = "Quanto você gastou de material?",
-                            description = "Soma de tecidos, linhas, botões, etc.",
-                            value = materialCost,
-                            onValueChange = { materialCost = it },
-                            placeholder = "R$ 0,00"
-                        )
-                        2 -> StepContent(
-                            question = "Quantas horas levou para fazer?",
-                            description = "Conte o tempo de corte, costura e acabamento.",
-                            value = laborTime,
-                            onValueChange = { laborTime = it },
-                            placeholder = "Ex: 2.5 horas"
-                        )
-                        3 -> StepContent(
-                            question = "Qual o valor da sua hora?",
-                            description = "Quanto você cobra pelo seu trabalho por hora?",
-                            value = hourlyRate,
-                            onValueChange = { hourlyRate = it },
-                            placeholder = "Ex: R$ 20,00"
-                        )
-                        4 -> ResultContent(totalPrice)
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            if (step < 4) {
-                Button(
-                    onClick = { step++ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF4F9A))
-                ) {
-                    Text("Continuar", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                }
-            } else {
-                Button(
-                    onClick = { navController.popBackStack() },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF4F9A))
-                ) {
-                    Icon(Icons.Default.Check, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
-                    Text("Concluir", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                }
-            }
+            OutlinedButton(onClick = { material = ""; hours = ""; rate = ""; markup = "30" }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Novo cálculo") }
         }
     }
 }
-
 @Composable
-fun StepContent(
-    question: String,
-    description: String,
-    value: String,
-    onValueChange: (String) -> Unit,
-    placeholder: String
-) {
-    Text(question, fontSize = 22.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-    Text(description, fontSize = 14.sp, color = Color.Gray, textAlign = TextAlign.Center)
-    
-    Spacer(modifier = Modifier.height(20.dp))
-    
-    OutlinedTextField(
-        value = value,
-        onValueChange = { if (it.isEmpty() || it.all { c -> c.isDigit() || c == '.' }) onValueChange(it) },
-        placeholder = { Text(placeholder) },
-        modifier = Modifier.fillMaxWidth().height(64.dp),
-        shape = RoundedCornerShape(16.dp),
-        textStyle = LocalTextStyle.current.copy(fontSize = 20.sp, fontWeight = FontWeight.Bold),
-        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(keyboardType = KeyboardType.Decimal)
-    )
+private fun PriceInput(label: String, value: String, onChange: (String) -> Unit, hint: String, max: Double) {
+    val parsed = SewingMath.decimal(value)
+    val invalid = value.isNotBlank() && (parsed == null || parsed > max)
+    OutlinedTextField(value, { onChange(it.take(16)) }, label = { Text(label) }, singleLine = true,
+        modifier = Modifier.fillMaxWidth(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+        isError = invalid, supportingText = { Text(if (invalid) "Informe um número de 0 a $max." else hint) })
 }
 
-@Composable
-fun ResultContent(totalPrice: Double) {
-    Text("PREÇO SURGERIDO", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Gray)
-    
-    Surface(
-        color = Color(0xFFFDE7F0),
-        shape = RoundedCornerShape(32.dp),
-        modifier = Modifier.padding(vertical = 16.dp)
-    ) {
-        Text(
-            "R$ %.2f".format(totalPrice),
-            fontSize = 42.sp,
-            fontWeight = FontWeight.Black,
-            color = Color(0xFFFF4F9A),
-            modifier = Modifier.padding(horizontal = 32.dp, vertical = 20.dp)
-        )
-    }
-    
-    Text(
-        "Este preço já inclui o custo dos materiais,\no seu tempo de trabalho e um lucro de 30%.",
-        textAlign = TextAlign.Center,
-        fontSize = 14.sp,
-        color = Color.DarkGray
-    )
-}

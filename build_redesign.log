@@ -1,0 +1,90 @@
+WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+
+This Android Gradle plugin (8.5.2) was tested up to compileSdk = 34.
+
+You are strongly encouraged to update your project to use a newer
+Android Gradle plugin that has been tested with compileSdk = 36.
+
+If you are already using the latest version of the Android Gradle plugin,
+you may need to wait until a newer version with support for compileSdk = 36 is available.
+
+For more information refer to the compatibility table:
+https://d.android.com/r/tools/api-level-support
+
+To suppress this warning, add/update
+    android.suppressUnsupportedCompileSdk=36
+to this project's gradle.properties.
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\36.0.0\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-34\package.xml. Probably the SDK is read-only
+Exception while marshalling C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platforms\android-36\package.xml. Probably the SDK is read-only
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :opencv:preBuild UP-TO-DATE
+> Task :opencv:preDebugBuild UP-TO-DATE
+> Task :opencv:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :opencv:generateDebugResValues UP-TO-DATE
+> Task :opencv:generateDebugResources UP-TO-DATE
+> Task :opencv:packageDebugResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :opencv:extractDeepLinksDebug UP-TO-DATE
+> Task :opencv:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :opencv:compileDebugLibraryResources UP-TO-DATE
+> Task :opencv:parseDebugLocalResources UP-TO-DATE
+> Task :opencv:generateDebugRFile UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :opencv:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :opencv:generateDebugBuildConfig UP-TO-DATE
+> Task :opencv:compileDebugKotlin UP-TO-DATE
+> Task :opencv:javaPreCompileDebug UP-TO-DATE
+> Task :opencv:compileDebugJavaWithJavac UP-TO-DATE
+> Task :opencv:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:kspDebugKotlin
+> Task :app:compileDebugKotlin
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:18:49 Unresolved reference 'SewingMath'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:25:18 Unresolved reference 'SewingMath'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:37:26 Argument type mismatch: actual type is 'R?', but 'K?' was expected.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:37:34 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:37:38 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:37:93 Argument type mismatch: actual type is 'kotlin.String', but 'K' was expected.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:40:32 Unresolved reference 'compareTo'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/ElasticityTestScreen.kt:41:32 Unresolved reference 'compareTo'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:17:49 Unresolved reference 'SewingMath'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:28:17 Unresolved reference 'SewingMath'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:42:26 Argument type mismatch: actual type is 'R?', but 'K?' was expected.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:42:33 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:42:37 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:42:61 Argument type mismatch: actual type is 'kotlin.String', but 'K' was expected.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:52:18 Unresolved reference 'SewingMath'.
+e: file:///D:/GitHub/Ajudante-De-Costura/app/src/main/java/com/scarletstudio/ajudantedecostura/ui/screens/PriceCalculatorScreen.kt:53:67 Unresolved reference 'compareTo'.
+
+> Task :app:compileDebugKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+30 actionable tasks: 2 executed, 28 up-to-date
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3m 15s

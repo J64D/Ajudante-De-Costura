@@ -1,10 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     // Adicione esta linha para o Room funcionar (se der erro aqui, veja a nota abaixo sobre o TOML)
     alias(libs.plugins.ksp)
 }
+
+val courseFirebase = Properties().apply {
+    val config = rootProject.file("firebase.properties")
+    if (config.exists()) config.inputStream().use { load(it) }
+}
+fun firebaseString(key: String) = "\"" + courseFirebase.getProperty(key, "")
+    .replace("\\", "\\\\").replace("\"", "\\\"") + "\""
 
 configurations.all {
     resolutionStrategy.force(
@@ -25,8 +33,11 @@ android {
         applicationId = "com.scarletstudio.ajudantedecostura"
         minSdk = 26
         targetSdk = 36
-        versionCode = 66
-        versionName = "66.0"
+        versionCode = 67
+        versionName = "67.0"
+        buildConfigField("String", "COURSES_API_KEY", firebaseString("apiKey"))
+        buildConfigField("String", "COURSES_PROJECT_ID", firebaseString("projectId"))
+        buildConfigField("String", "COURSES_APP_ID", firebaseString("applicationId"))
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,6 +55,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -51,8 +63,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        }
     }
 
     packaging {
@@ -63,6 +77,9 @@ android {
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -71,7 +88,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-    implementation("androidx.activity:activity-compose:1.9.1")
+    implementation(libs.androidx.activity.compose)
 
     // UI Compose
     implementation(libs.androidx.ui)
@@ -87,10 +104,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
 
-    // Widgets (Glance)
-    implementation(libs.androidx.glance.appwidget)
-    implementation(libs.androidx.glance.material3)
-
     // Permissões (câmera)
     implementation(libs.accompanist.permissions)
 
@@ -102,7 +115,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // ✅ CORREÇÃO 5: AdMob / Google Ads — versão gerenciada pelo TOML (23.6.0)
+    // Google Mobile Ads SDK — versão gerenciada pelo catálogo de versões.
     implementation(libs.play.services.ads)
 
     // OpenCV Local
@@ -110,6 +123,7 @@ dependencies {
 
     // Testes
     testImplementation(libs.junit)
+    testImplementation("org.json:json:20240303")
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

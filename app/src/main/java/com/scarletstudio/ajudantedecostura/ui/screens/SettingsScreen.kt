@@ -1,212 +1,106 @@
 package com.scarletstudio.ajudantedecostura.ui.screens
 
-import androidx.compose.foundation.background
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
-import com.scarletstudio.ajudantedecostura.R
+import com.scarletstudio.ajudantedecostura.data.local.PieceDatabase
+import com.scarletstudio.ajudantedecostura.data.local.PieceBackup
+import com.scarletstudio.ajudantedecostura.data.local.entity.PieceEntity
 import com.scarletstudio.ajudantedecostura.navigation.Routes
+import com.scarletstudio.ajudantedecostura.ui.theme.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// -----------------------------------------------------------------------------
-// ▶ BANNER ADMOB
-// -----------------------------------------------------------------------------
-@Composable
-fun AdMobBanner() {
-    AndroidView(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp), // 🔒 NÃO ALTERADO
-        factory = { context ->
-            AdView(context).apply {
-                setAdSize(AdSize.BANNER)
-                adUnitId = "ca-app-pub-1367515717522293/6625687240"
-                loadAd(AdRequest.Builder().build())
-            }
-        }
-    )
-}
-
-// -----------------------------------------------------------------------------
-// ▶ SETTINGS SCREEN
-// -----------------------------------------------------------------------------
 @Composable
 fun SettingsScreen(navController: NavHostController) {
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .statusBarsPadding()
-            .navigationBarsPadding()
-            .padding(horizontal = 14.dp, vertical = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        // ---------------------------------------------------------------------
-        // ▶ CABEÇALHO
-        // ---------------------------------------------------------------------
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Configurações",
-                fontSize = 18.sp, // AJUSTE
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFFFF4F9A)
-            )
-
-            IconButton(onClick = { navController.popBackStack() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_close),
-                    contentDescription = "Voltar",
-                    tint = Color.Gray,
-                    modifier = Modifier.size(20.dp) // AJUSTE
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(14.dp)) // AJUSTE
-
-        AdMobBanner()
-
-        Spacer(modifier = Modifier.height(12.dp)) // AJUSTE
-
-        // ---------------------------------------------------------------------
-        // ▶ BOTÃO DE PRIVACIDADE
-        // ---------------------------------------------------------------------
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 4.dp), // AJUSTE
-            horizontalArrangement = Arrangement.End
-        ) {
-            Button(
-                onClick = { navController.navigate(Routes.PRIVACY) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFFE0EB),
-                    contentColor = Color(0xFFFF4F9A)
-                ),
-                shape = CircleShape,
-                elevation = ButtonDefaults.buttonElevation(0.dp),
-                modifier = Modifier.height(34.dp) // AJUSTE
-            ) {
-                Text("Privacidade", fontSize = 13.sp) // AJUSTE
-            }
-        }
-
-        Spacer(modifier = Modifier.height(10.dp)) // AJUSTE
-
-        // ---------------------------------------------------------------------
-        // ▶ SEÇÃO DE GESTÃO DE ESTOQUE
-        // ---------------------------------------------------------------------
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFFFFF3F7), RoundedCornerShape(14.dp)) // AJUSTE
-                .padding(14.dp) // AJUSTE
-        ) {
-
-            Text(
-                text = "GESTÃO DE ESTOQUE",
-                fontSize = 13.sp, // AJUSTE
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFFFF4F9A)
-            )
-
-            Spacer(modifier = Modifier.height(10.dp)) // AJUSTE
-
-            // -----------------------------------------------------------------
-            // ▶ EXPORTAR & IMPORTAR
-            // -----------------------------------------------------------------
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Button(
-                    onClick = { /* exportar */ },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFE0EB)),
-                    shape = RoundedCornerShape(14.dp), // AJUSTE
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(42.dp) // AJUSTE
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_box),
-                        contentDescription = "Exportar",
-                        tint = Color(0xFFFF4F9A),
-                        modifier = Modifier.size(18.dp) // AJUSTE
-                    )
-                    Spacer(modifier = Modifier.width(4.dp)) // AJUSTE
-                    Text("Exportar", color = Color(0xFFFF4F9A), fontSize = 13.sp) // AJUSTE
-                }
-
-                Spacer(modifier = Modifier.width(10.dp)) // AJUSTE
-
-                Button(
-                    onClick = { /* importar */ },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFE0EB)),
-                    shape = RoundedCornerShape(14.dp), // AJUSTE
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(42.dp) // AJUSTE
-                ) {
-                    Text("Importar", color = Color(0xFFFF4F9A), fontSize = 13.sp) // AJUSTE
-                }
-            }
-
-            Spacer(modifier = Modifier.height(14.dp)) // AJUSTE
-
-            // -----------------------------------------------------------------
-            // ▶ BOTÃO "LIMPAR TODO O ESTOQUE"
-            // -----------------------------------------------------------------
-            Button(
-                onClick = { /* limpar */ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFC8DA)),
-                shape = RoundedCornerShape(18.dp), // AJUSTE
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(64.dp) // AJUSTE (antes 85.dp)
-            ) {
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Spacer(modifier = Modifier.width(4.dp)) // AJUSTE
-
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_trash),
-                        contentDescription = "Lixeira",
-                        tint = Color(0xFFFF4F9A),
-                        modifier = Modifier.size(30.dp) // AJUSTE
-                    )
-
-                    Spacer(modifier = Modifier.width(12.dp)) // AJUSTE
-
-                    Text(
-                        "Limpar Todo o Estoque",
-                        color = Color(0xFFFF4F9A),
-                        fontSize = 14.sp, // AJUSTE
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-            }
+    val context = LocalContext.current
+    val dao = remember { PieceDatabase.getDatabase(context).pieceDao() }
+    val scope = rememberCoroutineScope()
+    var busy by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf<String?>(null) }
+    var clear by remember { mutableStateOf(false) }
+    var pending by remember { mutableStateOf<List<PieceEntity>?>(null) }
+    val export = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+        if (uri != null) scope.launch {
+            busy = true
+            runCatching { withContext(Dispatchers.IO) {
+                val content = PieceBackup.encode(dao.getAll().first())
+                val stream = context.contentResolver.openOutputStream(uri, "wt") ?: error("Arquivo indisponível")
+                stream.bufferedWriter(Charsets.UTF_8).use { it.write(content) }
+            } }.onSuccess { message = "Backup salvo com sucesso." }.onFailure { message = "Não foi possível salvar o backup." }
+            busy = false
         }
     }
+    val import = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) scope.launch {
+            busy = true
+            runCatching { withContext(Dispatchers.IO) {
+                val stream = context.contentResolver.openInputStream(uri) ?: error("Arquivo indisponível")
+                val bytes = stream.use { input ->
+                    val output = java.io.ByteArrayOutputStream()
+                    val buffer = ByteArray(8192)
+                    var count = input.read(buffer)
+                    while (count != -1) {
+                        require(output.size() + count <= 5 * 1024 * 1024)
+                        output.write(buffer, 0, count)
+                        count = input.read(buffer)
+                    }
+                    output.toByteArray()
+                }
+                PieceBackup.decode(bytes.toString(Charsets.UTF_8))
+            } }.onSuccess { if (it.isEmpty()) message = "O backup está vazio." else pending = it }
+                .onFailure { message = "Backup inválido. Escolha um JSON exportado pelo aplicativo, de até 5 MB." }
+            busy = false
+        }
+    }
+    Scaffold(topBar = { AtelierTopBar("Configurações", { navController.popBackStack() }) }) { padding ->
+        Column(Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            InlineAd()
+            LiquidHero("SEU ESPAÇO", "Tudo bem\nguardado.", "Cuide dos registros do seu ateliê.")
+            if (busy) LinearProgressIndicator(Modifier.fillMaxWidth())
+            message?.let { Text(it, color = Rose) }
+            Text("Backup das peças", style = MaterialTheme.typography.titleLarge)
+            Text("Salve uma cópia em um arquivo e leve seus registros para outro aparelho.", color = RoseMuted)
+            Button(enabled = !busy, onClick = { export.launch("ajudante-costura-backup.json") }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
+                Icon(Icons.Rounded.FileDownload, null); Spacer(Modifier.width(8.dp)); Text("Exportar backup")
+            }
+            OutlinedButton(enabled = !busy, onClick = { import.launch(arrayOf("application/json", "text/plain", "application/octet-stream")) }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
+                Icon(Icons.Rounded.FileUpload, null); Spacer(Modifier.width(8.dp)); Text("Importar backup")
+            }
+            Text("Importar adiciona os registros às peças atuais. Importar o mesmo arquivo novamente cria cópias.", style = MaterialTheme.typography.bodySmall, color = RoseMuted)
+            HorizontalDivider()
+            AtelierAction("Cursos e publicação", "Acesso às aulas e à administração", Icons.Rounded.OndemandVideo, Modifier.fillMaxWidth()) { navController.navigate(Routes.COURSES) }
+            TextButton(onClick = { navController.navigate(Routes.PRIVACY) }) { Icon(Icons.Rounded.PrivacyTip, null); Spacer(Modifier.width(8.dp)); Text("Privacidade e seus dados") }
+            OutlinedButton(enabled = !busy, onClick = { clear = true }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Excluir todas as peças") }
+        }
+    }
+    if (clear) AlertDialog(onDismissRequest = { clear = false }, title = { Text("Excluir todas as peças?") },
+        text = { Text("Esta ação não pode ser desfeita. Exporte um backup antes se quiser guardar seus registros.") },
+        confirmButton = { TextButton(onClick = { clear = false; scope.launch {
+            busy = true
+            runCatching { dao.deleteAll() }.onSuccess { message = "Peças excluídas." }.onFailure { message = "Não foi possível excluir as peças." }
+            busy = false
+        } }) { Text("Excluir tudo") } }, dismissButton = { TextButton(onClick = { clear = false }) { Text("Cancelar") } })
+    pending?.let { rows ->
+        AlertDialog(onDismissRequest = { pending = null }, title = { Text("Importar ${rows.size} registros?") },
+            text = { Text("As peças existentes serão mantidas. Os registros do arquivo serão adicionados.") },
+            confirmButton = { TextButton(onClick = { pending = null; scope.launch {
+                busy = true
+                runCatching { dao.insertAll(rows) }.onSuccess { message = "Backup importado." }.onFailure { message = "Não foi possível importar o backup." }
+                busy = false
+            } }) { Text("Importar") } }, dismissButton = { TextButton(onClick = { pending = null }) { Text("Cancelar") } })
+    }
 }
+

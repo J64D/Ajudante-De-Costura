@@ -29,10 +29,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // ✅ Android 15 / SDK 35 – Edge-to-Edge seguro
-        enableEdgeToEdge()
-
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         // ✅ Inicialização do AdMob
         MobileAds.initialize(this) { status ->
@@ -40,7 +38,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            MaterialTheme {
+            com.scarletstudio.ajudantedecostura.ui.theme.AjudanteDeCosturaTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {

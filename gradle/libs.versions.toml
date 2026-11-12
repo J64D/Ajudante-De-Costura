@@ -1,23 +1,22 @@
 [versions]
 # Ferramentas de Build
-agp = "8.5.2"  # ⚠️ Corrigido para uma versão estável real
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.28"
+agp = "9.0.1"
+kotlin = "2.2.10"
+ksp = "2.2.10-2.0.2"
 
 # Dependências Principais
 coreKtx = "1.15.0"
-fragment = "1.8.9"
+fragment = "1.9.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.1"
+activityCompose = "1.13.0"
 composeBom = "2024.10.01"
-glance = "1.1.1"
 camera = "1.4.2"
 accompanist = "0.36.0"
 
 # 🟢 NOVAS DEPENDÊNCIAS (Essenciais para corrigir os erros do seu código)
 navigationCompose = "2.8.5"
-room = "2.6.1"
-googleAds = "23.6.0"
+room = "2.8.5"
+googleAds = "25.5.0"
 
 # Dependências de Teste
 junit = "4.13.2"
@@ -57,10 +56,6 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleAds" }
 
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
-
-# Glance (Widgets)
-androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
-androidx-glance-material3 = { group = "androidx.glance", name = "glance-material3", version.ref = "glance" }
 
 # Testes
 junit = { group = "junit", name = "junit", version.ref = "junit" }

@@ -1,122 +1,57 @@
 package com.scarletstudio.ajudantedecostura.ui.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.material.icons.rounded.Straighten
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.scarletstudio.ajudantedecostura.data.SewingMath
+import com.scarletstudio.ajudantedecostura.ui.theme.*
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ElasticityTestScreen(navController: NavHostController) {
-    var stretchedLength by remember { mutableStateOf("14") }
-    val length = stretchedLength.replace(',', '.').toDoubleOrNull() ?: 10.0
-    val elasticity = (((length - 10.0) / 10.0) * 100).coerceAtLeast(0.0).toInt()
-    val result = when {
-        elasticity < 10 -> Triple("Baixa", "Tecido firme, com pouca elasticidade.", Color(0xFF4D8B5B))
-        elasticity < 30 -> Triple("Média", "Esse tecido possui elasticidade moderada.", Color(0xFFD18A00))
-        else -> Triple("Alta", "Esse tecido acompanha bem os movimentos do corpo.", Color(0xFFC04B6E))
-    }
-
-    Scaffold(
-        bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
-        topBar = {
-            TopAppBar(
-                title = { Text("Teste de Elasticidade", fontWeight = FontWeight.Bold) },
-                navigationIcon = { IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Voltar") } }
-            )
-        },
-        containerColor = Color(0xFFFFF2F6)
-    ) { padding ->
-        Column(
-            Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState()).padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            Text("Use uma amostra de 10 cm de tecido.", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-            Text("Estique sem forçar até o limite confortável e informe quanto ela alcançou.", color = Color.Gray)
-            Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text("Comprimento inicial", fontWeight = FontWeight.Bold)
-                    Text("10 cm", color = Color.Gray)
-                    Text("Quanto alcançou ao esticar?", fontWeight = FontWeight.Bold)
-                    OutlinedTextField(
-                        value = stretchedLength,
-                        onValueChange = { value -> if (value.all { it.isDigit() || it == ',' || it == '.' }) stretchedLength = value },
-                        modifier = Modifier.fillMaxWidth(),
-                        suffix = { Text("cm") },
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
-                    )
+    var length by rememberSaveable { mutableStateOf("") }
+    var help by remember { mutableStateOf(false) }
+    val result = SewingMath.elasticity(length)
+    val progress by animateFloatAsState(((result ?: 0.0) / 100).toFloat().coerceIn(0f, 1f), spring(), label = "Elasticidade")
+    Scaffold(topBar = { AtelierTopBar("Elasticidade", { navController.popBackStack() }) }) { padding ->
+        Column(Modifier.fillMaxSize().padding(padding).imePadding().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+            InlineAd()
+            BubbleIcon(Icons.Rounded.Straighten)
+            Text("Conheça o movimento\ndo seu tecido.", style = MaterialTheme.typography.headlineSmall)
+            Text("Separe uma amostra de 10 cm e meça quanto ela alcança ao esticar suavemente.", color = RoseMuted)
+            OutlinedTextField(length, { length = it.take(8) }, label = { Text("Comprimento esticado") }, suffix = { Text("cm") }, singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal), modifier = Modifier.fillMaxWidth(),
+                isError = length.isNotBlank() && result == null, supportingText = { Text("Informe de 10 a 100 cm. A medida inicial é 10 cm.") })
+            Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Petal)) {
+                Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    Text(result?.let { "${java.text.DecimalFormat("0.#").format(it)}%" } ?: "Vamos medir?", style = MaterialTheme.typography.headlineLarge)
+                    LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
+                    Text(when { result == null -> "O resultado aparecerá aqui."
+                        result < 10 -> "Pouca elasticidade"
+                        result < 30 -> "Elasticidade moderada"
+                        else -> "Alta elasticidade" }, style = MaterialTheme.typography.titleMedium)
+                    Text("A barra representa até 100%. O valor acima mostra o cálculo completo.", style = MaterialTheme.typography.bodySmall)
                 }
             }
-            Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                Row(Modifier.fillMaxWidth().padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text("Resultado", color = Color.Gray, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                        Text("$elasticity%", color = Color(0xFFFF4F9A), fontSize = 42.sp, fontWeight = FontWeight.Black)
-                        Text("${result.first} elasticidade", color = result.third, fontWeight = FontWeight.Bold)
-                        Spacer(Modifier.height(4.dp))
-                        Text(result.second, color = Color.DarkGray)
-                    }
-                    VerticalRuler(elasticity)
-                }
-            }
-            Text("Pode ser indicado para", fontWeight = FontWeight.Bold)
-            Text("Blusas ajustadas, vestidos e algumas peças esportivas.", color = Color.DarkGray)
-            Text("Costura", fontWeight = FontWeight.Bold)
-            Text("Prefira ponto com elasticidade.", color = Color.DarkGray)
-            Text("Agulha", fontWeight = FontWeight.Bold)
-            Text("Verifique se o tecido exige ponta bola ou stretch.", color = Color.DarkGray)
-            Button(
-                onClick = { stretchedLength = "10" },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF4F9A))
-            ) { Text("? Como fazer o teste") }
+            Text("Confira o molde e teste nos dois sentidos do tecido. A elasticidade, sozinha, não determina a agulha nem a peça ideal.", color = RoseMuted)
+            Button(onClick = { help = true }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Como fazer o teste") }
+            TextButton(onClick = { navController.navigate(com.scarletstudio.ajudantedecostura.navigation.Routes.RULER) }) { Text("Abrir régua com rolagem") }
+            TextButton(onClick = { length = "" }) { Text("Limpar medida") }
         }
     }
+    if (help) AlertDialog(onDismissRequest = { help = false }, title = { Text("Passo a passo") },
+        text = { Text("1. Marque 10 cm no tecido em repouso.\n\n2. Segure nas marcas e estique sem deformar o tecido.\n\n3. Meça a distância entre as marcas e informe o valor.\n\n4. Solte e observe se ele volta ao tamanho inicial. Repita no outro sentido.") },
+        confirmButton = { TextButton(onClick = { help = false }) { Text("Entendi") } })
 }
 
-@Composable
-private fun VerticalRuler(elasticity: Int) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("^", color = Color(0xFFFF4F9A), fontSize = 22.sp)
-        Spacer(Modifier.height((elasticity.coerceIn(0, 80) + 30).dp).background(Color(0xFFFF4F9A)).width(4.dp))
-        Text("10 cm", color = Color.Gray, fontSize = 11.sp)
-    }
-}

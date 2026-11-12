@@ -51,10 +51,10 @@ private val fabrics = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FabricGuideScreen(navController: NavHostController) {
-    var query by remember { mutableStateOf("") }
+    var query by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("") }
     val filtered = fabrics.filter { it.name.contains(query, ignoreCase = true) }
     Scaffold(
-        bottomBar = { AdMobBanner(modifier = Modifier.fillMaxWidth().height(50.dp)) },
+        
         topBar = {
             TopAppBar(
                 title = { Text("Guia de Tecidos", fontWeight = FontWeight.Bold) },
@@ -67,6 +67,7 @@ fun FabricGuideScreen(navController: NavHostController) {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
+            item { InlineAd() }
             item {
                 OutlinedTextField(
                     value = query,
@@ -77,19 +78,22 @@ fun FabricGuideScreen(navController: NavHostController) {
                     placeholder = { Text("Buscar tecido") }
                 )
             }
+
             items(filtered) { fabric ->
-                Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF2F6))) {
+                Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Color.White)) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(fabric.name, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                         Text("Elasticidade: ${fabric.stretch}")
-                        Text("Usos comuns: ${fabric.use}", color = Color.DarkGray)
-                        Text("Dica: ${fabric.tip}", color = Color.Gray)
+                        Text("Usos comuns: ${fabric.use}", color = com.scarletstudio.ajudantedecostura.ui.theme.RoseInk)
+                        Text("Dica: ${fabric.tip}", color = com.scarletstudio.ajudantedecostura.ui.theme.RoseMuted)
                         androidx.compose.material3.TextButton(onClick = { navController.navigate(Routes.ELASTICITY) }) {
-                            Text("Testar elasticidade deste tecido", color = Color(0xFFFF4F9A))
+                            Text("Testar elasticidade deste tecido", color = com.scarletstudio.ajudantedecostura.ui.theme.Rose)
                         }
                     }
                 }
             }
+            if (filtered.isEmpty()) item { Text("Nenhum tecido encontrado. Tente outro nome.") }
         }
     }
 }
+

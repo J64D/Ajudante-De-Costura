@@ -2,6 +2,7 @@
 # Android / Gradle
 # =========================
 .gradle/
+.gradle-cache-offload/
 build/
 .externalNativeBuild/
 .cxx/
@@ -28,3 +29,6 @@ local.properties
 # Captures
 # =========================
 captures/
+firebase.properties
+/AjudanteDecostura26
+/app/AjudanteDecostura26
